@@ -3,7 +3,7 @@
     <div class="title">已授权模块课程列表</div>
     <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ path: '/empower' }">已授权模块列表</el-breadcrumb-item>
-      <el-breadcrumb-item :to="{ path: '/empowerDetails' }">模块详情</el-breadcrumb-item>
+      <el-breadcrumb-item>模块详情</el-breadcrumb-item>
       <el-breadcrumb-item>已授权模块课程列表</el-breadcrumb-item>
     </el-breadcrumb>
     <el-table
