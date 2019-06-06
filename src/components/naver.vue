@@ -63,7 +63,7 @@ export default {
   inject: ['reload'],
   mounted () {
     setTimeout(() => {
-      this.activeIndex = localStorage.getItem('href')// 导航颜色高亮liang
+      this.activeIndex = localStorage.getItem('href')// 导航颜色高亮
     }, 100)
     this.activeIndex = localStorage.getItem('href')// 导航颜色高亮
   },
