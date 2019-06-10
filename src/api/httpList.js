@@ -1,6 +1,7 @@
 import {post, get} from './http.js'
 
-let base = 'http://192.168.10.6'
+// let base = 'http://192.168.10.6' //本地接口IP
+let base = 'http://101.37.65.245'
 
 // 登录
 export const sendCode = params => { return post(`${base}/gym/login/sendCode`, params) }// 验证码登录
