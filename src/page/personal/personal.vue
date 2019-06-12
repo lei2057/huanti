@@ -1,6 +1,10 @@
 <template>
   <div class="bg">
-    <div class="title">个人中心<div class="btn update-btn" @click="updateShow" v-text="update?'返回':'修改'">修改</div></div>
+    <div class="title disflex">
+      <div class="flex">个人中心</div>
+      <div class="btn" @click="updateShow" v-text="update?'返回':'修改'">修改</div>
+      <div class="btn" style="margin-left: 10px;" @click="exit">退出登录</div>
+    </div>
     <div class="personal-wrapper">
       <div class="personal-list">
         <ul>
@@ -14,7 +18,8 @@
           </li>
           <li>
             <p class="list-title">客户状态：</p>
-            <p class="list-text">锻炼85天</p>
+            <p class="list-text" v-if="userInfo.status == 0">已启用</p>
+            <p class="list-text" v-else>已禁用</p>
           </li>
           <li>
             <p class="list-title">登录密码：</p>
@@ -111,10 +116,14 @@ export default {
       this.update = !this.update
     },
     updateSubmit () {
-      let phoneReg = /^1[3-578]\d{9}$/
+      let phoneReg = /^1[3456789]\d{9}$/
+      // eslint-disable-next-line no-useless-escape
+      let emailReg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/
       if (!phoneReg.test(this.phone)) {
         this.$message.error('请输入正确的手机号！')
-      } else if (!this.company || !this.address || !this.email) {
+      } else if (!emailReg.test(this.email)) {
+        this.$message.error('请输入正确的邮箱地址！')
+      } else if (!this.company || !this.address) {
         this.$message.error('请完整修改信息！')
       } else {
         this.$confirm('确定要修改个人信息吗?', '提示', {
@@ -133,6 +142,7 @@ export default {
             customerPhone: this.phone,
             customerId: this.userInfo.id
           }).then(res => {
+            console.log(res)
             localStorage.setItem('userInfo', JSON.stringify(res.data.data))
             this.reload()
           }).catch(err => {
@@ -145,6 +155,22 @@ export default {
           })
         })
       }
+    },
+    exit () {
+      this.$confirm('确定要退出吗?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$message({
+          type: 'success',
+          message: '退出成功！'
+        })
+        localStorage.clear()
+        this.$router.push('login')
+      }).catch(() => {
+
+      })
     }
   }
 }

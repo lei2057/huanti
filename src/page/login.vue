@@ -50,7 +50,7 @@ export default {
       this.isShow = !this.isShow
     },
     getCode () { // 获取验证码
-      let phoneReg = /^1[3-578]\d{9}$/
+      let phoneReg = /^1[3456789]\d{9}$/
       if (!phoneReg.test(this.phone)) {
         this.$message.error('请输入正确的手机号！')
       } else {
