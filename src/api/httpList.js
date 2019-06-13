@@ -9,7 +9,7 @@ export const login = params => { return post(`${base}/gym/login/phoneLogin`, par
 export const wxChat = params => { return post(`${base}/gym/login/wxLogin`, params) }// 微信登录
 
 // 个人信息
-export const userUpdate = params => { return post(`${base}/gym/login/updateCustomer`, params) }// 个人信息修改
+export const userUpdate = params => { return post(`${base}/gym/customer/updateCustomer`, params) }// 个人信息修改
 
 // 会员列表
 export const selectMember = params => { return get(`${base}/gym/customer/selectAllMember`, params) }// 会员信息列表
