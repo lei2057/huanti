@@ -2,13 +2,13 @@
   <div style="width:100%;height:100%;position: absolute;">
     <naver></naver>
     <div class="login-wrapper">
-      <div class="wechat-login" v-if="isShow">
+      <div class="wechat-login" v-show="isShow">
         <div class="login-title">
           <h1>微信登录</h1>
           <p @click="login">手机号登录</p>
         </div>
         <div class="login-code">
-          <img src="" alt="">
+          <iframe :src="qrcode" frameborder="0" scrolling="no" height="450"></iframe>
         </div>
       </div>
       <div class="phone-login" v-if="!isShow">
@@ -34,7 +34,7 @@
 
 <script>
 import Naver from '../components/naver'
-import { sendCode, login } from '@/api/httpList'
+import { sendCode, login, wxChat } from '@/api/httpList'
 export default {
   data () {
     return {
@@ -42,12 +42,14 @@ export default {
       timeNone: false, // 验证码倒计时显示
       time: 60, // 倒计时初始化
       phone: '', // 电话号
-      code: '' // 输入的验证码
+      code: '', // 输入的验证码
+      qrcode: ''// 微信二维码扫码登录
     }
   },
   methods: {
     login () { // 登录方式切换
       this.isShow = !this.isShow
+      this.wxqrcode()
     },
     getCode () { // 获取验证码
       let phoneReg = /^1[3456789]\d{9}$/
@@ -57,7 +59,6 @@ export default {
         sendCode({
           customerPhone: this.phone
         }).then(res => {
-          console.log(res)
           this.$message({
             message: '验证码发送成功！',
             type: 'success'
@@ -80,7 +81,6 @@ export default {
       }
     },
     loginSubmit () {
-      var _this = this
       let codeIn = sessionStorage.getItem('code')
       if (!this.phone) {
         this.$message.error('请输入手机号！')
@@ -91,7 +91,6 @@ export default {
           customerPhone: this.phone,
           random: codeIn
         }).then(res => {
-          console.log(res)
           if (res.msg === '验证码错误') {
             this.$message.error('验证码错误,请重新发送验证码!')
           } else if (res.msg === '该用户不存在') {
@@ -105,13 +104,30 @@ export default {
             localStorage.setItem('userInfo', JSON.stringify(res.data.customerInfo[0]))
             localStorage.setItem('href', 'personal')// 导航高亮个人中心
             setTimeout(() => {
-              _this.$router.push({path: '/personal'})
-            }, 2000)
+              this.$router.push({path: '/personal'})
+            }, 1000)
           }
         }).catch(err => {
           console.log(err)
         })
       }
+    },
+    wxqrcode () {
+      wxChat({// 微信二维码扫码登录
+      }).then(res => {
+        this.qrcode = res
+      })
+    }
+  },
+  mounted () {
+    let url = window.location.search
+    let code = url.substr(url.indexOf('=') + 1, url.indexOf('openid') - 7)
+    if (code === '12') {
+      this.$message.error('客户数据异常，暂不能登录，请联系管理员！')
+    } else if (code === '13') {
+      this.$message.error('该用户状态无效，请联系管理员！')
+    } else {
+
     }
   },
   components: {
@@ -155,6 +171,13 @@ export default {
       padding: 20px;
       background: #fff;
       margin: auto;
+      position: relative;
+      overflow: hidden;
+      .old-template {
+        position: absolute;
+        top: -63px;
+        left: -26px;
+      }
     }
   }
   .phone-login {

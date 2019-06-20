@@ -86,15 +86,14 @@ export default {
       this.reload()
     },
     record () {
-      console.log(this.timeSlot)
-      console.log(this.formatDate(this.timeSlot[0]))
-      console.log(this.formatDate(this.timeSlot[1]))
+      // console.log(this.timeSlot)
+      // console.log(this.formatDate(this.timeSlot[0]))
+      // console.log(this.formatDate(this.timeSlot[1]))
       this.$router.push({
         name: 'equipmentDetails'
       })
     },
     formatDate (date) {
-      console.log(date)
       if (typeof date === 'string') {
         return this.formatDate2(date)
       }

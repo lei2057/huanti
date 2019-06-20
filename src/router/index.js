@@ -1,23 +1,5 @@
-/* eslint-disable no-undef */
 import Vue from 'vue'
 import Router from 'vue-router'
-import index from '@/page/index'
-import personal from '@/page/personal/personal'// 个人中心
-import member from '@/page/member/member'// 会员列表
-import equipment from '@/page/equipment/equipment'// 设备列表
-import programme from '@/page/programme/programme'// 方案列表
-import account from '@/page/account/account'// 子账号
-import empower from '@/page/empower/empower'// 已授权模块
-import customer from '@/page/customer/customer'// 客服中心
-import memberDetails from '@/page/member/memberDetails'// 会员详情
-import equipmentDetails from '@/page/equipment/equipmentDetails'// 设备使用记录
-import programmeDetails from '@/page/programme/programmeDetails'// 方案名称
-import accountDetails from '@/page/account/accountDetails'// 子账号详情
-import empowerDetails from '@/page/empower/empowerDetails'// 模块详情
-import empowerStage from '@/page/empower/empowerStage'// 已授权模块课程列表
-import empowerStageDetails from '@/page/empower/empowerStageDetails'// 课程详情
-
-import login from '@/page/login'
 
 Vue.use(Router)
 
@@ -26,7 +8,7 @@ export default new Router({
     {
       path: '/',
       name: 'index',
-      component: index,
+      component: () => import('@/page/index'),
       redirect: '/personal',
       meta: {
         title: '首页',
@@ -35,80 +17,89 @@ export default new Router({
       children: [{
         path: '/personal',
         name: 'personal',
-        component: personal
+        component: () => import('@/page/personal/personal')// 个人中心
       },
       {
         path: '/member',
         name: 'member',
-        component: member
+        component: () => import('@/page/member/member')// 会员列表
       },
       {
         path: '/memberDetails',
         name: 'memberDetails',
-        component: memberDetails
+        component: () => import('@/page/member/memberDetails')// 会员详情
       },
       {
         path: '/equipment',
         name: 'equipment',
-        component: equipment
+        component: () => import('@/page/equipment/equipment')// 设备列表
       },
       {
         path: '/equipmentDetails',
         name: 'equipmentDetails',
-        component: equipmentDetails
+        component: () => import('@/page/equipment/equipmentDetails')// 设备使用记录
       },
       {
         path: '/programme',
         name: 'programme',
-        component: programme
+        component: () => import('@/page/programme/programme')// 方案列表
       },
       {
         path: '/programmeDetails',
         name: 'programmeDetails',
-        component: programmeDetails
+        component: () => import('@/page/programme/programmeDetails')// 方案名称
       },
       {
         path: '/account',
         name: 'account',
-        component: account
+        component: () => import('@/page/account/account')// 子账号
       },
       {
         path: '/accountDetails',
         name: 'accountDetails',
-        component: accountDetails
+        component: () => import('@/page/account/accountDetails')// 子账号详情
       },
       {
         path: '/empower',
         name: 'empower',
-        component: empower
+        component: () => import('@/page/empower/empower')// 已授权模块
       },
       {
         path: '/empowerDetails',
         name: 'empowerDetails',
-        component: empowerDetails
+        component: () => import('@/page/empower/empowerDetails')// 模块详情
       },
       {
         path: '/empowerStage',
         name: 'empowerStage',
-        component: empowerStage
+        component: () => import('@/page/empower/empowerStage')// 已授权模块课程列表
       },
       {
         path: '/empowerStageDetails',
         name: 'empowerStageDetails',
-        component: empowerStageDetails
+        component: () => import('@/page/empower/empowerStageDetails')// 课程详情
       },
       {
         path: '/customer',
         name: 'customer',
-        component: customer
+        component: () => import('@/page/customer/customer')// 客服中心
       }]
     },
     {
       path: '/login',
       name: 'login',
-      component: login,
+      component: () => import('@/page/login'),
       meta: {
         title: '登录',
+        requireAuth: true
+      }
+    },
+    {
+      path: '/wxPhone',
+      name: 'wxPhone',
+      component: () => import('@/page/wxPhone'),
+      meta: {
+        title: '绑定手机号',
         requireAuth: true
       }
     }

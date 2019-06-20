@@ -1,12 +1,15 @@
 import {post, get} from './http.js'
 
-// let base = 'http://192.168.10.6' //本地接口IP
-let base = 'http://101.37.65.245'
+// let base = 'http://192.168.10.6:8088' // 本地接口IP
+// let base = 'http://101.37.65.245'
+let base = 'http://119.23.201.136:8088'
 
 // 登录
 export const sendCode = params => { return post(`${base}/gym/login/sendCode`, params) }// 验证码登录
 export const login = params => { return post(`${base}/gym/login/phoneLogin`, params) }// 手机号登录
-export const wxChat = params => { return post(`${base}/gym/login/wxLogin`, params) }// 微信登录
+export const wxChat = params => { return get(`${base}/gym/login/wxLoginCheck`, params) }// 微信二维码登录
+export const wxUserInfo = params => { return get(`${base}/gym/customer/selectCustomerByOpenid`, params) }// 查询用户信息
+export const wxLoginPhone = params => { return post(`${base}/gym/login/wxLoginBindingPhone`, params) }// 绑定手机
 
 // 个人信息
 export const userUpdate = params => { return post(`${base}/gym/customer/updateCustomer`, params) }// 个人信息修改

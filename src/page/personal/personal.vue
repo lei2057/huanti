@@ -101,12 +101,13 @@ export default {
   },
   inject: ['reload'],
   mounted () {
-    this.userInfo = JSON.parse(localStorage.getItem('userInfo'))
-
-    // 密码加密
-    let len = this.userInfo.customerPassword.length
-    let xx = this.userInfo.customerPassword.substring(0, len - 4)
-    this.passwordHide = this.userInfo.customerPassword.replace(xx, '****')
+    setTimeout(() => {
+      this.userInfo = JSON.parse(localStorage.getItem('userInfo'))
+      // 密码加密
+      let len = this.userInfo.customerPassword.length
+      let xx = this.userInfo.customerPassword.substring(0, len - 4)
+      this.passwordHide = this.userInfo.customerPassword.replace(xx, '****')
+    }, 0)
   },
   methods: {
     password () { // 开关按钮显示完整密码
@@ -142,7 +143,6 @@ export default {
             customerPhone: this.phone,
             customerId: this.userInfo.id
           }).then(res => {
-            console.log(res)
             localStorage.setItem('userInfo', JSON.stringify(res.data.data))
             this.reload()
           }).catch(err => {
@@ -167,7 +167,7 @@ export default {
           message: '退出成功！'
         })
         localStorage.clear()
-        this.$router.push('login')
+        window.location.href = 'http://wmqhouse.top:8088/static/gym/index.html#/login'
       }).catch(() => {
 
       })

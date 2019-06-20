@@ -28,12 +28,6 @@
         prop="age"
         label="年龄">
       </el-table-column>
-      <!-- <el-table-column
-        label="操作">
-        <template slot-scope="scope">
-          <el-link type="success" :underline="false" @click="handleEdit(scope.$index, scope.row)">查看</el-link>
-        </template>
-      </el-table-column> -->
     </el-table>
     <div class="pagination-wrapper">
       <el-pagination
@@ -65,14 +59,6 @@ export default {
     })
   },
   methods: {
-    // handleEdit (index, row) {
-    //   this.$router.push({
-    //     name: 'memberDetails',
-    //     query: {
-    //       id: row.id
-    //     }
-    //   })
-    // },
     infoAll () { // 显示全部(删除话缓存)
       sessionStorage.removeItem('searchInfo')
       sessionStorage.removeItem('searchTitle')
