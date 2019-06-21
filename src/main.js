@@ -17,8 +17,7 @@ Vue.prototype.get = get
 Vue.config.productionTip = false
 
 router.beforeEach((to, from, next) => {
-    let url = window.location.search
-    // let url = '?code=0000000&openid=oxWab1DpG1gdsf8A9_EyFUr77FmE&token=0419ba7bf7048739ab3cac45f6dcd2bf'
+  let url = window.location.search
   if (to.matched.some(record => record.meta.requireAuth)) {
     if (url) {
     let str = url.substr(url.indexOf('openid') + 7)
@@ -42,7 +41,7 @@ router.beforeEach((to, from, next) => {
           localStorage.setItem('token', token)
           localStorage.setItem('userInfo', JSON.stringify(res.data.list[0]))
           localStorage.setItem('href', 'personal')
-          window.location.href = 'http://wmqhouse.top:8088/static/gym/index.html#/personal'
+          window.location.href = 'http://ntmove.com/static/gym/index.html#/personal'
         }).catch(err => {
           console.log(err)
         })

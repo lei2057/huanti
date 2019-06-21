@@ -56,7 +56,7 @@ export default {
             })
             localStorage.setItem('userInfo', JSON.stringify(res.data.customerInfo[0]))
             localStorage.setItem('token', res.data.token)
-            window.location.href = 'http://wmqhouse.top:8088/static/gym/index.html#/personal'
+            window.location.href = 'http://ntmove.com/static/gym/index.html#/personal'
           }
         }).catch(err => {
           console.log(err)
