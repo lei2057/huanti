@@ -11,7 +11,6 @@
       </el-date-picker>
       <button class="btn" style="margin-left:10px;" @click="record">生成使用记录</button>
     </div>
-    <el-button size="mini" type="success" plain @click="infoAll">显示全部</el-button>
     <el-table
       :data="tableData.slice((currentPage-1)*pagesize,currentPage*pagesize)"
       border
@@ -56,7 +55,6 @@ export default {
       timeSlot: ''// 时间段
     }
   },
-  inject: ['reload'],
   mounted () {
     let id = JSON.parse(localStorage.getItem('userInfo')).id
     if (sessionStorage.getItem('searchInfo') && sessionStorage.getItem('searchTitle') === '设备') {
@@ -79,11 +77,6 @@ export default {
   methods: {
     current_change (currentPage) { // 初始页
       this.currentPage = currentPage
-    },
-    infoAll () { // 显示全部(删除话缓存)
-      sessionStorage.removeItem('searchInfo')
-      sessionStorage.removeItem('searchTitle')
-      this.reload()
     },
     record () {
       // console.log(this.timeSlot)

@@ -4,7 +4,7 @@
       <div class="title flex">子账号</div>
       <button class="btn" @click="dialogVisible = true">添加</button>
     </div>
-    <el-button size="mini" type="success" plain @click="infoAll">显示全部</el-button>
+    <!-- <el-button size="mini" type="success" plain @click="infoAll">显示全部</el-button> -->
     <el-table
       :data="tableData.slice((currentPage-1)*pagesize,currentPage*pagesize)"
       border
@@ -80,7 +80,7 @@ export default {
       pagesize: 5 // 每页的数据
     }
   },
-  inject: ['reload'],
+  // inject: ['reload'],
   mounted () {
     let id = JSON.parse(localStorage.getItem('userInfo')).id
     if (sessionStorage.getItem('searchInfo') && sessionStorage.getItem('searchTitle') === '子账号') {
@@ -178,11 +178,11 @@ export default {
         })
       }
     },
-    infoAll () { // 显示全部(删除话缓存)
-      sessionStorage.removeItem('searchInfo')
-      sessionStorage.removeItem('searchTitle')
-      this.reload()
-    },
+    // infoAll () { // 显示全部(删除话缓存)
+    //   sessionStorage.removeItem('searchInfo')
+    //   sessionStorage.removeItem('searchTitle')
+    //   this.reload()
+    // },
     current_change (currentPage) { // 初始页
       this.currentPage = currentPage
     }

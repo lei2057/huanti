@@ -1,7 +1,6 @@
 <template>
   <div class="bg">
     <div class="title">会员列表</div>
-    <el-button size="mini" type="success" plain @click="infoAll">显示全部</el-button>
     <el-table
       :data="tableData.slice((currentPage-1)*pagesize,currentPage*pagesize)"
       border
@@ -15,6 +14,18 @@
         prop="subAccountId"
         label="会员归属"
         width="180">
+      </el-table-column>
+      <el-table-column
+        prop="phone"
+        label="手机号">
+      </el-table-column>
+      <el-table-column
+        prop="birthday"
+        label="生日">
+      </el-table-column>
+      <el-table-column
+        prop="trainingObjectives"
+        label="训练目标">
       </el-table-column>
       <el-table-column
         prop="sex"
@@ -59,11 +70,6 @@ export default {
     })
   },
   methods: {
-    infoAll () { // 显示全部(删除话缓存)
-      sessionStorage.removeItem('searchInfo')
-      sessionStorage.removeItem('searchTitle')
-      this.reload()
-    },
     current_change (currentPage) { // 初始页
       this.currentPage = currentPage
     }

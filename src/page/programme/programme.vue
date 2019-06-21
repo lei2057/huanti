@@ -1,7 +1,6 @@
 <template>
   <div class="bg">
     <div class="title">方案列表</div>
-    <el-button size="mini" type="success" plain @click="infoAll">显示全部</el-button>
     <el-table
       :data="tableData.slice((currentPage-1)*pagesize,currentPage*pagesize)"
       border
@@ -78,11 +77,6 @@ export default {
           id: row.moduleIds
         }
       })
-    },
-    infoAll () { // 显示全部(删除话缓存)
-      sessionStorage.removeItem('searchInfo')
-      sessionStorage.removeItem('searchTitle')
-      this.reload()
     },
     current_change (currentPage) { // 初始页
       this.currentPage = currentPage

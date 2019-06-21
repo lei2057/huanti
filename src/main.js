@@ -41,6 +41,7 @@ router.beforeEach((to, from, next) => {
         }).then(res => {
           localStorage.setItem('token', token)
           localStorage.setItem('userInfo', JSON.stringify(res.data.list[0]))
+          localStorage.setItem('href', 'personal')
           window.location.href = 'http://wmqhouse.top:8088/static/gym/index.html#/personal'
         }).catch(err => {
           console.log(err)
