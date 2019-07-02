@@ -40,11 +40,6 @@ export default new Router({
         component: () => import('@/page/equipment/equipmentDetails')// 设备使用记录
       },
       {
-        path: '/programme',
-        name: 'programme',
-        component: () => import('@/page/programme/programme')// 方案列表
-      },
-      {
         path: '/programmeDetails',
         name: 'programmeDetails',
         component: () => import('@/page/programme/programmeDetails')// 方案名称

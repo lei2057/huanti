@@ -7,17 +7,16 @@
       style="width: 100%;text-align: center">
       <el-table-column
         prop="memberName"
-        label="姓名"
-        width="180">
+        label="姓名">
       </el-table-column>
       <el-table-column
         prop="subAccountId"
-        label="会员归属"
+        label="教练手机号"
         width="180">
       </el-table-column>
       <el-table-column
         prop="phone"
-        label="手机号">
+        label="会员手机号">
       </el-table-column>
       <el-table-column
         prop="birthday"

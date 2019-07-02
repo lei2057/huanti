@@ -13,7 +13,7 @@
           <el-menu-item index="personal" >个人中心</el-menu-item>
           <el-menu-item index="member">会员列表</el-menu-item>
           <el-menu-item index="equipment">设备列表</el-menu-item>
-          <el-menu-item index="programme">方案列表</el-menu-item>
+          <!-- <el-menu-item index="programme">方案列表</el-menu-item> -->
           <el-menu-item index="account">子账号</el-menu-item>
           <el-menu-item index="empower">已授权模块</el-menu-item>
           <el-menu-item index="customer">客服中心</el-menu-item>
@@ -50,9 +50,6 @@ export default {
       }, {
         value: '模块',
         id: '模块'
-      }, {
-        value: '方案',
-        id: '方案'
       }, {
         value: '子账号',
         id: '子账号'

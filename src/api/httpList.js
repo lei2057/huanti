@@ -1,7 +1,8 @@
 import {post, get} from './http.js'
 
 // let base = 'http://192.168.10.6:8088' // 本地接口IP
-let base = 'http://101.37.65.245'
+// let base = 'http://101.37.65.245'
+let base = 'https://ntmove.com'
 // let base = 'http://119.23.201.136:8088'
 
 // 登录

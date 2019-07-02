@@ -41,7 +41,7 @@ router.beforeEach((to, from, next) => {
           localStorage.setItem('token', token)
           localStorage.setItem('userInfo', JSON.stringify(res.data.list[0]))
           localStorage.setItem('href', 'personal')
-          window.location.href = 'http://ntmove.com/static/gym/index.html#/personal'
+          window.location.href = 'https://ntmove.com/static/gym/index.html#/personal'
         }).catch(err => {
           console.log(err)
         })

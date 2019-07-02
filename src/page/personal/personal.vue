@@ -26,7 +26,8 @@
             <p class="list-text" v-if="!isShow">{{passwordHide}}</p>
             <p class="list-text" v-if="isShow">{{userInfo.customerPassword}}</p>
           </li>
-          <li>
+          <li style="justify-content: normal;">
+            <div style="margin-top: -5px;margin-right: 10px;">显示密码</div>
             <el-switch
               v-model="value"
               active-color="#A1C922"
@@ -167,7 +168,7 @@ export default {
           message: '退出成功！'
         })
         localStorage.clear()
-        window.location.href = 'http://wmqhouse.top:8088/static/gym/index.html#/login'
+        window.location.href = 'https://ntmove.com/static/gym/index.html#/login'
       }).catch(() => {
 
       })
