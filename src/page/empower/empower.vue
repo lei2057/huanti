@@ -16,8 +16,14 @@
         width="180">
       </el-table-column>
       <el-table-column
-        prop="moduleIntroduced"
+        prop="status"
         label="所属类别">
+        <template slot-scope="scope">
+          <span v-if="scope.row.status == 0">基础</span>
+          <span v-else-if="scope.row.status == 1">特色</span>
+          <span v-else-if="scope.row.status == 2">维密</span>
+          <span v-else>大众</span>
+        </template>
       </el-table-column>
       <el-table-column
         label="操作">
@@ -48,16 +54,19 @@ export default {
     }
   },
   mounted () {
+    let id = JSON.parse(localStorage.getItem('userInfo')).id
     if (sessionStorage.getItem('searchInfo') && sessionStorage.getItem('searchTitle') === '模块') {
       selectEmpower({
         token: localStorage.getItem('token'),
-        queryKey: sessionStorage.getItem('searchInfo')
+        queryKey: sessionStorage.getItem('searchInfo'),
+        customerId: id
       }).then(res => {
         this.tableData = res.data.moduleList
       })
     } else {
       selectEmpower({
-        token: localStorage.getItem('token')
+        token: localStorage.getItem('token'),
+        customerId: id
       }).then(res => {
         this.tableData = res.data.moduleList
       })
